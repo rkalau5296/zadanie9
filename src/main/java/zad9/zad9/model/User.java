@@ -4,18 +4,18 @@ import com.opencsv.bean.CsvBindByName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import javax.persistence.*;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "users")
+@Document
+@ToString
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @CsvBindByName
@@ -33,7 +33,6 @@ public class User {
     @CsvBindByName(column = "ip_address")
     private String ipAddress;
 
-    @Autowired
     public User(Long id, String first_name, String last_name, String email, String gender, String ipAddress) {
         this.id = id;
         this.first_name = first_name;
